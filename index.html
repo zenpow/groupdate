@@ -36,45 +36,72 @@
 <li>day</li>
 <li>week</li>
 <li>month</li>
-<li>hour</li>
+<li>day of the week</li>
+<li>hour of the day</li>
 <li>
 <em>and more</em> (complete list at bottom)</li>
 </ul><p><img class="emoji" title=":tada:" alt=":tada:" src="https://a248.e.akamai.net/assets.github.com/images/icons/emoji/tada.png" height="20" width="20" align="absmiddle"> Time zones supported!!</p>
 
-<p>PostgreSQL only at the moment - support for other datastores coming soon</p>
+<p>PostgreSQL and MySQL only at the moment - support for other datastores coming soon</p>
 
 <h2>Usage</h2>
 
 <div class="highlight"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
 <span class="c1"># {</span>
-<span class="c1">#   "2013-04-16 00:00:00+00" =&gt; 50,</span>
-<span class="c1">#   "2013-04-17 00:00:00+00" =&gt; 100,</span>
-<span class="c1">#   "2013-04-18 00:00:00+00" =&gt; 34</span>
+<span class="c1">#   2013-04-16 00:00:00 UTC =&gt; 50,</span>
+<span class="c1">#   2013-04-17 00:00:00 UTC =&gt; 100,</span>
+<span class="c1">#   2013-04-18 00:00:00 UTC =&gt; 34</span>
 <span class="c1"># }</span>
 
 <span class="no">Task</span><span class="o">.</span><span class="n">group_by_month</span><span class="p">(</span><span class="ss">:updated_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
 <span class="c1"># {</span>
-<span class="c1">#   "2013-02-01 00:00:00+00" =&gt; 84,</span>
-<span class="c1">#   "2013-03-01 00:00:00+00" =&gt; 23,</span>
-<span class="c1">#   "2013-04-01 00:00:00+00" =&gt; 44</span>
+<span class="c1">#   2013-02-01 00:00:00 UTC =&gt; 84,</span>
+<span class="c1">#   2013-03-01 00:00:00 UTC =&gt; 23,</span>
+<span class="c1">#   2013-04-01 00:00:00 UTC =&gt; 44</span>
 <span class="c1"># }</span>
 
 <span class="no">Goal</span><span class="o">.</span><span class="n">group_by_year</span><span class="p">(</span><span class="ss">:accomplished_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
 <span class="c1"># {</span>
-<span class="c1">#   "2011-01-01 00:00:00+00" =&gt; 7,</span>
-<span class="c1">#   "2012-01-01 00:00:00+00" =&gt; 11,</span>
-<span class="c1">#   "2013-01-01 00:00:00+00" =&gt; 3</span>
+<span class="c1">#   2011-01-01 00:00:00 UTC =&gt; 7,</span>
+<span class="c1">#   2012-01-01 00:00:00 UTC =&gt; 11,</span>
+<span class="c1">#   2013-01-01 00:00:00 UTC =&gt; 3</span>
 <span class="c1"># }</span>
 </pre></div>
 
 <p>The default time zone is <code>Time.zone</code>.  Pass a time zone as the second argument.</p>
 
-<div class="highlight"><pre><span class="n">time_zone</span> <span class="o">=</span> <span class="ss">ActiveSupport</span><span class="p">:</span><span class="ss">:TimeZone</span><span class="o">[</span><span class="s2">"Pacific Time (US &amp; Canada)"</span><span class="o">]</span>
-<span class="no">User</span><span class="o">.</span><span class="n">group_by_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">,</span> <span class="n">time_zone</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
+<div class="highlight"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">,</span> <span class="s2">"Pacific Time (US &amp; Canada)"</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
 <span class="c1"># {</span>
-<span class="c1">#   "2013-02-25 08:00:00+00" =&gt; 80,</span>
-<span class="c1">#   "2013-03-04 08:00:00+00" =&gt; 70,</span>
-<span class="c1">#   "2013-03-11 07:00:00+00" =&gt; 54</span>
+<span class="c1">#   2013-03-03 08:00:00 UTC =&gt; 80,</span>
+<span class="c1">#   2013-03-10 08:00:00 UTC =&gt; 70,</span>
+<span class="c1">#   2013-03-17 07:00:00 UTC =&gt; 54</span>
+<span class="c1"># }</span>
+
+<span class="c1"># equivalently</span>
+<span class="n">time_zone</span> <span class="o">=</span> <span class="ss">ActiveSupport</span><span class="p">:</span><span class="ss">:TimeZone</span><span class="o">[</span><span class="s2">"Pacific Time (US &amp; Canada)"</span><span class="o">]</span>
+<span class="no">User</span><span class="o">.</span><span class="n">group_by_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">,</span> <span class="n">time_zone</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
+</pre></div>
+
+<p><strong>Note:</strong> Weeks start on Sunday.</p>
+
+<p>You can also group by the day of the week or hour of the day.</p>
+
+<div class="highlight"><pre><span class="c1"># day of the week</span>
+<span class="no">User</span><span class="o">.</span><span class="n">group_by_day_of_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
+<span class="c1"># {</span>
+<span class="c1">#   0 =&gt; 54, # Sunday</span>
+<span class="c1">#   1 =&gt; 2,  # Monday</span>
+<span class="c1">#   ...</span>
+<span class="c1">#   6 =&gt; 3   # Saturday</span>
+<span class="c1"># }</span>
+
+<span class="c1"># hour of the day</span>
+<span class="no">User</span><span class="o">.</span><span class="n">group_by_hour_of_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">,</span> <span class="s2">"Pacific Time (US &amp; Canada)"</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
+<span class="c1"># {</span>
+<span class="c1">#   0 =&gt; 34,</span>
+<span class="c1">#   1 =&gt; 61,</span>
+<span class="c1">#   ...</span>
+<span class="c1">#   23 =&gt; 12</span>
 <span class="c1"># }</span>
 </pre></div>
 
@@ -88,7 +115,36 @@
 <div class="highlight"><pre><span class="no">Request</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">page</span><span class="p">:</span> <span class="s2">"/home"</span><span class="p">)</span><span class="o">.</span><span class="n">group_by_minute</span><span class="p">(</span><span class="ss">:started_at</span><span class="p">)</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="ss">:request_time</span><span class="p">)</span>
 </pre></div>
 
-<p><strong>Note:</strong> On Rails 4 edge, queries return a Time object (much better!) as a result of <a href="https://github.com/rails/rails/commit/2cc09441c2de57b024b11ba666ba1e72c2b20cfe">this commit</a></p>
+<h3>Note</h3>
+
+<p>activerecord &lt;= 4.0.0.beta1 and the pg gem returns String objects instead of Time objects.
+<a href="https://github.com/rails/rails/commit/2cc09441c2de57b024b11ba666ba1e72c2b20cfe">This is fixed on activerecord master</a></p>
+
+<div class="highlight"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
+
+<span class="c1"># mysql2</span>
+<span class="c1"># pg and activerecord master</span>
+<span class="p">{</span><span class="mi">2013</span><span class="o">-</span><span class="mo">04</span><span class="o">-</span><span class="mi">22</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mo">00</span> <span class="no">UTC</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">}</span> <span class="c1"># Time object</span>
+
+<span class="c1"># pg and activerecord &lt;= 4.0.0.beta1</span>
+<span class="p">{</span><span class="s2">"2013-04-22 00:00:00+00"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">}</span> <span class="c1"># String</span>
+</pre></div>
+
+<p>Another data type inconsistency</p>
+
+<div class="highlight"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day_of_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
+
+<span class="c1"># mysql2</span>
+<span class="p">{</span><span class="mi">0</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">}</span> <span class="c1"># Integer</span>
+
+<span class="c1"># pg and activerecord &lt;= 4.0.0.beta1</span>
+<span class="p">{</span><span class="s2">"0"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"4"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">}</span> <span class="c1"># String</span>
+
+<span class="c1"># pg and activerecord master</span>
+<span class="p">{</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="o">.</span><span class="mi">0</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">}</span> <span class="c1"># Float</span>
+</pre></div>
+
+<p>These are <em>not</em> a result of groupdate (and unfortunately cannot be fixed by groupdate)</p>
 
 <h2>Installation</h2>
 
@@ -97,22 +153,27 @@
 <div class="highlight"><pre><span class="n">gem</span> <span class="s1">'groupdate'</span>
 </pre></div>
 
+<h3>MySQL only</h3>
+
+<p><a href="http://dev.mysql.com/doc/refman/5.6/en/time-zone-support.html">Time zone support</a> must be installed on the server.</p>
+
+<pre><code>mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
+</code></pre>
+
 <h2>Complete list</h2>
 
+<p>group_by_?</p>
+
 <ul>
-<li>microseconds</li>
-<li>milliseconds</li>
 <li>second</li>
 <li>minute</li>
 <li>hour</li>
 <li>day</li>
 <li>week</li>
 <li>month</li>
-<li>quarter</li>
 <li>year</li>
-<li>decade</li>
-<li>century</li>
-<li>millennium</li>
+<li>hour_of_day</li>
+<li>day_of_week</li>
 </ul><h2>Contributing</h2>
 
 <ol>
