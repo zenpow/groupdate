@@ -28,7 +28,9 @@
         </ul>
       </header>
       <section>
-        <p>The simplest way to group by:</p>
+        <h1>Groupdate</h1>
+
+<p>The simplest way to group by:</p>
 
 <ul>
 <li>day</li>
@@ -113,7 +115,35 @@
 <div class="highlight"><pre><span class="no">Request</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">page</span><span class="p">:</span> <span class="s2">"/home"</span><span class="p">)</span><span class="o">.</span><span class="n">group_by_minute</span><span class="p">(</span><span class="ss">:started_at</span><span class="p">)</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="ss">:request_time</span><span class="p">)</span>
 </pre></div>
 
-<h3>Note</h3>
+<h2>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'groupdate'</span>
+</pre></div>
+
+<h3>MySQL only</h3>
+
+<p><a href="http://dev.mysql.com/doc/refman/5.6/en/time-zone-support.html">Time zone support</a> must be installed on the server.</p>
+
+<pre><code>mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
+</code></pre>
+
+<h2>Complete list</h2>
+
+<p>group_by_?</p>
+
+<ul>
+<li>second</li>
+<li>minute</li>
+<li>hour</li>
+<li>day</li>
+<li>week</li>
+<li>month</li>
+<li>year</li>
+<li>hour_of_day</li>
+<li>day_of_week</li>
+</ul><h2>Note</h2>
 
 <p>activerecord &lt;= 4.0.0.beta1 and the pg gem returns String objects instead of Time objects.
 <a href="https://github.com/rails/rails/commit/2cc09441c2de57b024b11ba666ba1e72c2b20cfe">This is fixed on activerecord master</a></p>
@@ -144,35 +174,7 @@
 
 <p>These are <em>not</em> a result of groupdate (and unfortunately cannot be fixed by groupdate)</p>
 
-<h2>Installation</h2>
-
-<p>Add this line to your application's Gemfile:</p>
-
-<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'groupdate'</span>
-</pre></div>
-
-<h3>MySQL only</h3>
-
-<p><a href="http://dev.mysql.com/doc/refman/5.6/en/time-zone-support.html">Time zone support</a> must be installed on the server.</p>
-
-<pre><code>mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
-</code></pre>
-
-<h2>Complete list</h2>
-
-<p>group_by_?</p>
-
-<ul>
-<li>second</li>
-<li>minute</li>
-<li>hour</li>
-<li>day</li>
-<li>week</li>
-<li>month</li>
-<li>year</li>
-<li>hour_of_day</li>
-<li>day_of_week</li>
-</ul><h2>Contributing</h2>
+<h2>Contributing</h2>
 
 <ol>
 <li>Fork it</li>
