@@ -43,6 +43,8 @@
 
 <p>Supports PostgreSQL and MySQL</p>
 
+<p><a href="https://travis-ci.org/ankane/groupdate"><img src="https://travis-ci.org/ankane/groupdate.png" alt="Build Status"></a></p>
+
 <h2>Usage</h2>
 
 <div class="highlight"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
@@ -104,6 +106,11 @@
 <span class="c1"># }</span>
 </pre></div>
 
+<p>You can order results with <code>group_field</code>.</p>
+
+<div class="highlight"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="s2">"group_field desc"</span><span class="p">)</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
+</pre></div>
+
 <p>Use it with anything you can use <code>group</code> with:</p>
 
 <div class="highlight"><pre><span class="no">Task</span><span class="o">.</span><span class="n">completed</span><span class="o">.</span><span class="n">group_by_hour</span><span class="p">(</span><span class="ss">:completed_at</span><span class="p">)</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="ss">:priority</span><span class="p">)</span>
@@ -125,8 +132,19 @@
 
 <p><a href="http://dev.mysql.com/doc/refman/5.6/en/time-zone-support.html">Time zone support</a> must be installed on the server.</p>
 
-<pre><code>mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
-</code></pre>
+<div class="highlight"><pre>mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
+</pre></div>
+
+<h4>For JRuby</h4>
+
+<p>Use the master version of your JDBC adapter.  You will get incorrect results for versions before <a href="https://github.com/jruby/activerecord-jdbc-adapter/commit/c1cdb7cec8d3f06fc54995e8d872d830bd0a4d91">this commit</a>.</p>
+
+<div class="highlight"><pre><span class="c"># postgresql</span>
+gem <span class="s2">"activerecord-jdbcpostgresql-adapter"</span>, github: <span class="s2">"jruby/activerecord-jdbc-adapter"</span>
+
+<span class="c"># mysql</span>
+gem <span class="s2">"activerecord-jdbcmysql-adapter"</span>, github: <span class="s2">"jruby/activerecord-jdbc-adapter"</span>
+</pre></div>
 
 <h2>Complete list</h2>
 
