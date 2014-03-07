@@ -37,9 +37,9 @@
 <li>day of the week</li>
 <li>hour of the day</li>
 <li>and more (complete list at bottom)</li>
-</ul><p><img class="emoji" title=":tada:" alt=":tada:" src="https://a248.e.akamai.net/assets.github.com/images/icons/emoji/tada.png" height="20" width="20" align="absmiddle"> Time zones supported!! <strong>the best part</strong></p>
+</ul><p><img class="emoji" title=":tada:" alt=":tada:" src="https://github.global.ssl.fastly.net/images/icons/emoji/tada.png" height="20" width="20" align="absmiddle"> Time zones supported!! <strong>the best part</strong></p>
 
-<p><img class="emoji" title=":cake:" alt=":cake:" src="https://a248.e.akamai.net/assets.github.com/images/icons/emoji/cake.png" height="20" width="20" align="absmiddle"> Get the entire series - <strong>the other best part</strong></p>
+<p><img class="emoji" title=":cake:" alt=":cake:" src="https://github.global.ssl.fastly.net/images/icons/emoji/cake.png" height="20" width="20" align="absmiddle"> Get the entire series - <strong>the other best part</strong></p>
 
 <p>Works with Rails 3.0+</p>
 
@@ -47,12 +47,12 @@
 
 <p><a href="https://travis-ci.org/ankane/groupdate"><img src="https://travis-ci.org/ankane/groupdate.png" alt="Build Status"></a></p>
 
-<p><img class="emoji" title=":cupid:" alt=":cupid:" src="https://a248.e.akamai.net/assets.github.com/images/icons/emoji/cupid.png" height="20" width="20" align="absmiddle"> Goes hand in hand with <a href="http://ankane.github.io/chartkick/">Chartkick</a></p>
+<p><img class="emoji" title=":cupid:" alt=":cupid:" src="https://github.global.ssl.fastly.net/images/icons/emoji/cupid.png" height="20" width="20" align="absmiddle"> Goes hand in hand with <a href="http://ankane.github.io/chartkick/">Chartkick</a></p>
 
 <h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<div class="highlight"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
+<div class="highlight highlight-ruby"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
 <span class="c1"># {</span>
 <span class="c1">#   2013-04-16 00:00:00 UTC =&gt; 50,</span>
 <span class="c1">#   2013-04-17 00:00:00 UTC =&gt; 100,</span>
@@ -76,7 +76,7 @@
 
 <p>The default time zone is <code>Time.zone</code>.  Pass a time zone as the second argument.</p>
 
-<div class="highlight"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">,</span> <span class="s2">"Pacific Time (US &amp; Canada)"</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
+<div class="highlight highlight-ruby"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">,</span> <span class="s2">"Pacific Time (US &amp; Canada)"</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
 <span class="c1"># {</span>
 <span class="c1">#   2013-03-03 08:00:00 UTC =&gt; 80,</span>
 <span class="c1">#   2013-03-10 08:00:00 UTC =&gt; 70,</span>
@@ -84,13 +84,13 @@
 <span class="c1"># }</span>
 
 <span class="c1"># equivalently</span>
-<span class="n">time_zone</span> <span class="o">=</span> <span class="ss">ActiveSupport</span><span class="p">:</span><span class="ss">:TimeZone</span><span class="o">[</span><span class="s2">"Pacific Time (US &amp; Canada)"</span><span class="o">]</span>
+<span class="n">time_zone</span> <span class="o">=</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TimeZone</span><span class="o">[</span><span class="s2">"Pacific Time (US &amp; Canada)"</span><span class="o">]</span>
 <span class="no">User</span><span class="o">.</span><span class="n">group_by_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">,</span> <span class="n">time_zone</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
 </pre></div>
 
 <p><strong>Note:</strong> Weeks start on Sunday by default. For other days, use:</p>
 
-<div class="highlight"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">,</span> <span class="ss">:start</span> <span class="o">=&gt;</span> <span class="ss">:mon</span><span class="p">)</span> <span class="c1"># first three letters of day</span>
+<div class="highlight highlight-ruby"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">,</span> <span class="ss">:start</span> <span class="o">=&gt;</span> <span class="ss">:mon</span><span class="p">)</span> <span class="c1"># first three letters of day</span>
 
 <span class="c1"># must be the last argument</span>
 <span class="no">User</span><span class="o">.</span><span class="n">group_by_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">,</span> <span class="n">time_zone</span><span class="p">,</span> <span class="ss">:start</span> <span class="o">=&gt;</span> <span class="ss">:sat</span><span class="p">)</span>
@@ -98,7 +98,7 @@
 
 <p>You can also group by the day of the week or hour of the day.</p>
 
-<div class="highlight"><pre><span class="c1"># day of the week</span>
+<div class="highlight highlight-ruby"><pre><span class="c1"># day of the week</span>
 <span class="no">User</span><span class="o">.</span><span class="n">group_by_day_of_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
 <span class="c1"># {</span>
 <span class="c1">#   0 =&gt; 54, # Sunday</span>
@@ -119,7 +119,7 @@
 
 <p>You can order results with:</p>
 
-<div class="highlight"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="s2">"day asc"</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
+<div class="highlight highlight-ruby"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="s2">"day asc"</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
 
 <span class="no">User</span><span class="o">.</span><span class="n">group_by_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="s2">"week desc"</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
 
@@ -128,21 +128,21 @@
 
 <p>Use it with anywhere you can use <code>group</code>.</p>
 
-<div class="highlight"><pre><span class="no">Task</span><span class="o">.</span><span class="n">completed</span><span class="o">.</span><span class="n">group_by_hour</span><span class="p">(</span><span class="ss">:completed_at</span><span class="p">)</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="ss">:priority</span><span class="p">)</span>
+<div class="highlight highlight-ruby"><pre><span class="no">Task</span><span class="o">.</span><span class="n">completed</span><span class="o">.</span><span class="n">group_by_hour</span><span class="p">(</span><span class="ss">:completed_at</span><span class="p">)</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="ss">:priority</span><span class="p">)</span>
 </pre></div>
 
 <p>Go nuts!</p>
 
-<div class="highlight"><pre><span class="no">Request</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">page</span><span class="p">:</span> <span class="s2">"/home"</span><span class="p">)</span><span class="o">.</span><span class="n">group_by_minute</span><span class="p">(</span><span class="ss">:started_at</span><span class="p">)</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="ss">:request_time</span><span class="p">)</span>
+<div class="highlight highlight-ruby"><pre><span class="no">Request</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">page</span><span class="p">:</span> <span class="s2">"/home"</span><span class="p">)</span><span class="o">.</span><span class="n">group_by_minute</span><span class="p">(</span><span class="ss">:started_at</span><span class="p">)</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="ss">:request_time</span><span class="p">)</span>
 </pre></div>
 
 <h3>
-<a name="show-me-the-series-moneybag" class="anchor" href="#show-me-the-series-moneybag"><span class="octicon octicon-link"></span></a>Show me the series <img class="emoji" title=":moneybag:" alt=":moneybag:" src="https://a248.e.akamai.net/assets.github.com/images/icons/emoji/moneybag.png" height="20" width="20" align="absmiddle">
+<a name="show-me-the-series-moneybag" class="anchor" href="#show-me-the-series-moneybag"><span class="octicon octicon-link"></span></a>Show me the series <img class="emoji" title=":moneybag:" alt=":moneybag:" src="https://github.global.ssl.fastly.net/images/icons/emoji/moneybag.png" height="20" width="20" align="absmiddle">
 </h3>
 
 <p>You have two users - one created on May 2 and one on May 5.</p>
 
-<div class="highlight"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
+<div class="highlight highlight-ruby"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
 <span class="c1"># {</span>
 <span class="c1">#   2013-05-02 00:00:00 UTC =&gt; 1,</span>
 <span class="c1">#   2013-05-05 00:00:00 UTC =&gt; 1</span>
@@ -151,7 +151,7 @@
 
 <p>Awesome, but you want to see the first week of May.  Pass a range as the third argument.</p>
 
-<div class="highlight"><pre><span class="c1"># pretend today is May 7</span>
+<div class="highlight highlight-ruby"><pre><span class="c1"># pretend today is May 7</span>
 <span class="n">time_range</span> <span class="o">=</span> <span class="mi">6</span><span class="o">.</span><span class="n">days</span><span class="o">.</span><span class="n">ago</span><span class="o">.</span><span class="n">.</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span>
 
 <span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">,</span> <span class="no">Time</span><span class="o">.</span><span class="n">zone</span><span class="p">,</span> <span class="n">time_range</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
@@ -186,7 +186,7 @@
 
 <p>Add this line to your application's Gemfile:</p>
 
-<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'groupdate'</span>
+<div class="highlight highlight-ruby"><pre><span class="n">gem</span> <span class="s1">'groupdate'</span>
 </pre></div>
 
 <h4>
@@ -194,7 +194,7 @@
 
 <p><a href="http://dev.mysql.com/doc/refman/5.6/en/time-zone-support.html">Time zone support</a> must be installed on the server.</p>
 
-<div class="highlight"><pre>mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql
+<div class="highlight highlight-sh"><pre>mysql_tzinfo_to_sql /usr/share/zoneinfo <span class="p">|</span> mysql -u root mysql
 </pre></div>
 
 <h4>
@@ -202,7 +202,7 @@
 
 <p>Use the master version of your JDBC adapter.  You will get incorrect results for versions before <a href="https://github.com/jruby/activerecord-jdbc-adapter/commit/c1cdb7cec8d3f06fc54995e8d872d830bd0a4d91">this commit</a>.</p>
 
-<div class="highlight"><pre><span class="c1"># postgresql</span>
+<div class="highlight highlight-ruby"><pre><span class="c1"># postgresql</span>
 <span class="n">gem</span> <span class="s2">"activerecord-jdbcpostgresql-adapter"</span><span class="p">,</span> <span class="ss">:github</span> <span class="o">=&gt;</span> <span class="s2">"jruby/activerecord-jdbc-adapter"</span>
 
 <span class="c1"># mysql</span>
@@ -230,7 +230,7 @@
 <p>activerecord &lt;= 4.0.0.beta1 and the pg gem returns String objects instead of Time objects.
 <a href="https://github.com/rails/rails/commit/2cc09441c2de57b024b11ba666ba1e72c2b20cfe">This is fixed on activerecord master</a></p>
 
-<div class="highlight"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
+<div class="highlight highlight-ruby"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
 
 <span class="c1"># mysql2</span>
 <span class="c1"># pg and activerecord master</span>
@@ -242,7 +242,7 @@
 
 <p>Another data type inconsistency</p>
 
-<div class="highlight"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day_of_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
+<div class="highlight highlight-ruby"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day_of_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
 
 <span class="c1"># mysql2</span>
 <span class="p">{</span><span class="mi">0</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">}</span> <span class="c1"># Integer</span>
