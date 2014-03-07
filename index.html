@@ -91,9 +91,9 @@
 
 <div class="highlight highlight-ruby"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">,</span> <span class="n">time_zone</span><span class="p">:</span> <span class="s2">"Pacific Time (US &amp; Canada)"</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
 <span class="c1"># {</span>
-<span class="c1">#   2013-03-03 08:00:00 UTC =&gt; 80,</span>
-<span class="c1">#   2013-03-10 08:00:00 UTC =&gt; 70,</span>
-<span class="c1">#   2013-03-17 07:00:00 UTC =&gt; 54</span>
+<span class="c1">#   2013-03-10 00:00:00 PST =&gt; 70,</span>
+<span class="c1">#   2013-03-17 00:00:00 PDT =&gt; 54,</span>
+<span class="c1">#   2013-03-24 00:00:00 PDT =&gt; 80</span>
 <span class="c1"># }</span>
 </pre></div>
 
@@ -186,7 +186,7 @@
 <div class="highlight highlight-ruby"><pre><span class="no">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">company_id</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
 </pre></div>
 </li>
-<li><p><code>Time</code> keys are now returned for every database adapter. Some older adapters previously returned <code>String</code> keys.</p></li>
+<li><p><code>ActiveSupport::TimeWithZone</code> keys are now returned for every database adapter. Adapters previously returned <code>Time</code> or <code>String</code> keys.</p></li>
 </ol><h2>
 <a name="history" class="anchor" href="#history"><span class="octicon octicon-link"></span></a>History</h2>
 
