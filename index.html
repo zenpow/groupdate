@@ -164,30 +164,13 @@
 <h2>
 <a name="upgrading-to-20" class="anchor" href="#upgrading-to-20"><span class="octicon octicon-link"></span></a>Upgrading to 2.0</h2>
 
-<p>Groupdate 2.0 brings a number a great improvements.</p>
+<p>Groupdate 2.0 brings a number a great improvements.  Here are two things to be aware of:</p>
 
 <ul>
 <li>the entire series is returned by default</li>
-<li>the <code>day_start</code> option</li>
-<li>an improved interface</li>
-</ul><p>However, there are a few things to be aware of when upgrading.</p>
-
-<ol>
 <li>
-<p>Groupdate methods must come after any <code>where</code>, <code>joins</code>, or <code>includes</code>.</p>
-
-<p>Throws error</p>
-
-<div class="highlight highlight-ruby"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">company_id</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
-</pre></div>
-
-<p><img class="emoji" title=":moneybag:" alt=":moneybag:" src="https://github.global.ssl.fastly.net/images/icons/emoji/moneybag.png" height="20" width="20" align="absmiddle"></p>
-
-<div class="highlight highlight-ruby"><pre><span class="no">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">company_id</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
-</pre></div>
-</li>
-<li><p><code>ActiveSupport::TimeWithZone</code> keys are now returned for every database adapter. Adapters previously returned <code>Time</code> or <code>String</code> keys.</p></li>
-</ol><h2>
+<code>ActiveSupport::TimeWithZone</code> keys are now returned for every database adapter - adapters previously returned <code>Time</code> or <code>String</code> keys</li>
+</ul><h2>
 <a name="history" class="anchor" href="#history"><span class="octicon octicon-link"></span></a>History</h2>
 
 <p>View the <a href="https://github.com/ankane/groupdate/blob/master/CHANGELOG.md">changelog</a></p>
