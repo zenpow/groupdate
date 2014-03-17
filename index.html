@@ -63,7 +63,7 @@
 <span class="c1"># }</span>
 </pre></div>
 
-<p>Results are returned in ascending order, so no need to sort.</p>
+<p>Results are returned in ascending order by default, so no need to sort.</p>
 
 <p>You can also group by:</p>
 
@@ -79,7 +79,9 @@
 <ul>
 <li>hour_of_day</li>
 <li>day_of_week (Sunday = 0, Monday = 1, etc)</li>
-</ul><h3>
+</ul><p>Use it anywhere you can use <code>group</code>.</p>
+
+<h3>
 <a name="time-zones" class="anchor" href="#time-zones"><span class="octicon octicon-link"></span></a>Time Zones</h3>
 
 <p>The default time zone is <code>Time.zone</code>.  Change this with:</p>
@@ -132,6 +134,34 @@
 
 <div class="highlight highlight-ruby"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">,</span> <span class="ss">range</span><span class="p">:</span> <span class="mi">2</span><span class="o">.</span><span class="n">weeks</span><span class="o">.</span><span class="n">ago</span><span class="o">.</span><span class="n">midnight</span><span class="o">.</span><span class="n">.</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
 </pre></div>
+
+<p>To get the most recent time periods, use:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_week</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">,</span> <span class="ss">last</span><span class="p">:</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">count</span> <span class="c1"># last 8 weeks</span>
+</pre></div>
+
+<h3>
+<a name="order" class="anchor" href="#order"><span class="octicon octicon-link"></span></a>Order</h3>
+
+<p>You can order in descending order with:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">reverse_order</span><span class="o">.</span><span class="n">count</span>
+</pre></div>
+
+<p>or</p>
+
+<div class="highlight highlight-ruby"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="s2">"day desc"</span><span class="p">)</span><span class="o">.</span><span class="n">count</span>
+</pre></div>
+
+<h3>
+<a name="pretty-keys" class="anchor" href="#pretty-keys"><span class="octicon octicon-link"></span></a>Pretty Keys</h3>
+
+<p>To get keys in a different format, use:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="no">User</span><span class="o">.</span><span class="n">group_by_hour_of_day</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="s2">"%l %P"</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">first</span> <span class="c1"># 12 am</span>
+</pre></div>
+
+<p>Takes a <code>String</code>, which is passed to <a href="http://strfti.me/">strftime</a>, or a <code>Proc</code></p>
 
 <h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
